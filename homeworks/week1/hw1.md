@@ -7,7 +7,7 @@
 1. 使用 ```cd <path>``` 移到要存放檔案的路徑
 2. ```git clone <專案 url>```
 檔案就會以一個資料夾的形式，從 github 下載到這個路徑底下了。
-![folder](/homeworks/week1/img/git_w1_1.jpg)
+![folder](/homeworks/week1/img/git_w1_1.JPG)
 3. ```git init```
 讓這個檔案可以使用 git 的功能。
 
@@ -66,7 +66,7 @@
 
 ### 買了為自己學 git 的書
 覺得那個賣電子書的 Leanpub 網站太酷了，他會設定最低多少錢，你可以往上提升書的價格。
-![Leanpub](/homeworks/week1/img/git_w1_3.jpg)
+![Leanpub](/homeworks/week1/img/git_w1_3.JPG)
 
 ---
 ### 參考資料
