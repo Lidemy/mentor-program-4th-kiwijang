@@ -110,7 +110,7 @@ CHDIR 命令不會將空格當成分隔字元，所以如果您要切換到含
 小結: shell 就是電腦的翻譯蒟蒻，我們輸入的指令 → Shell(**翻譯**) → Kernel(**運算**) 接受來自鍵盤的輸入﹐然後交由 CPU 進行處理﹐最後將執行結果輸出到螢幕上。
 
 從字面來解析的話﹐shell 就是"殼"﹐kernel 就是"核"。shell 就是使用者和 kernel 之間的界面﹐將使用者下的命令翻譯給 kernel 處理。
-![Leanpub](/homeworks/week1/img/cli_w1.jpg)
+![shell](/homeworks/week1/img/cli_w1.JPG)
 - [shell、cmd、dos和腳本語言區別和聯系](https://www.itread01.com/content/1499270537.html)
 > cmd 屬於 windows 系統的一部分，dos 本身就是一個系統。
 > 問題四：**腳本語言和普通的編程語言有什麽區別？**
