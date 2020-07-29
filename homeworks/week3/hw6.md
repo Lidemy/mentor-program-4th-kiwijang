@@ -49,10 +49,10 @@ is 開頭表示回傳 true 或 false。(如: `isPrime`)
 
 ## hw4：判斷迴文
 [LIOJ 1030](https://oj.lidemy.com/status/350d9eaab4ab88c8cdcec30e81e3265c) 
-感覺是陣列與字串的練習。 
-將字串拆成陣列後反轉、再組回字串。 
-`str.split('').reverse().join('');` 
-最後判斷是否與原本相同，與反轉後相同就是迴文。 
+感覺是陣列與字串的練習。  
+將字串拆成陣列後反轉、再組回字串。  
+`str.split('').reverse().join('');`  
+最後判斷是否與原本相同，與反轉後相同就是迴文。  
 
 ## hw5：聯誼順序比大小
 [LIOJ 1004 - BigInt](https://oj.lidemy.com/status/c14b856fc158fcd8d3267c7e57006ced)
