@@ -19,6 +19,7 @@ is 開頭表示回傳 true 或 false。(如: `isPrime`)
 #### 📌注意點
 - **轉型!** 使用 `Number()` 和 `String()` 轉型。
 - ES7 `**` 指數運算(exponentiation)。
+
   **原本**
   ``` javascript
   const x = Math.pow(3,7);
