@@ -11,10 +11,7 @@ rl.on('line', (line) => {
 
 function isPalindrome(str) {
   const reverseStr = str.split('').reverse().join('');
-  if (str === reverseStr) {
-    return true;
-  }
-  return false;
+  return str === reverseStr;
 }
 
 function solve(inputline) {
