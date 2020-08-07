@@ -11,13 +11,13 @@ function getTopGames() {
       'Client-ID': 'n1k78ho4sgcual55b8sdmb40s5gogr',
     },
   };
-  const req = request
+  const res = request
     .get(options, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 
 // 印出目前觀看人數跟遊戲名稱

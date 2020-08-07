@@ -1,79 +1,77 @@
+/* eslint-disable no-use-before-define */
 import request from 'request';
 import process from 'process';
 
+const args = process.argv;
+
 // ========== API ===================================================
-
-// Request emits a "response" event when a response is received.
-// The response argument will be an instance of http.IncomingMessage.
-
 /**
  * 獲取所有書籍 get
  * @param {number} _limit 限制回傳資料數量
  */
 function getTopBooksArr(_limit) {
-  const req = request
+  const res = request
     .get(`https://lidemy-book-store.herokuapp.com/books?${_limit === undefined ? '' : `_limit=${_limit}`}`, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 /**
  * 獲取單一書籍 get
  * @param {number} id 書的 id
  */
 function getBookById(id) {
-  const req = request
+  const res = request
     .get(`https://lidemy-book-store.herokuapp.com/books/${id}`, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 /**
  * 刪除書籍 delete
  * @param {number} id 書的 id
  */
 function deleteBookById(id) {
-  const req = request
+  const res = request
     .delete(`https://lidemy-book-store.herokuapp.com/books/${id}`, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 /**
  * 新增書籍 post
  * @param {string} bookName 書名
  */
 function createBook(bookName) {
-  const req = request
+  const res = request
     .post({ url: 'https://lidemy-book-store.herokuapp.com/books', form: { name: bookName } }, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 /**
  * 更改書籍資訊 patch
  * @param {number} id 書的 id
  */
 function updBook(id, bookName) {
-  const req = request
+  const res = request
     .patch({ url: `https://lidemy-book-store.herokuapp.com/books/${id}`, form: { name: bookName } }, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 
 // ========== 印出 ===================================================
-
 // 印出全部書籍
 function showAllBooks() {
   getTopBooksArr().on('complete', (data) => {
@@ -86,11 +84,34 @@ function showAllBooks() {
   });
 }
 
-if (!process.argv[2]) {
-  showAllBooks();
+const action = args[2];
+const params = args[3];
+
+switch (action) {
+  case undefined:
+    showAllBooks();
+    break;
+  case 'list':
+    listBooks();
+    break;
+  case 'read':
+    readBook(params);
+    break;
+  case 'delete':
+    deleteBook(params);
+    break;
+  case 'create':
+    createBook(params);
+    break;
+  case 'update':
+    updateBook(params, args[4]);
+    break;
+  default:
+    console.log('Available commands: list, read, delete, create and update');
 }
+
 // node hw2.js list 印出前二十本書的 id 與書名
-if (process.argv[2] === 'list') {
+function listBooks() {
   getTopBooksArr(20).on('complete', ({ body }) => {
     const books = JSON.parse(body);
     for (let i = 0; i < 20; i += 1) {
@@ -101,9 +122,7 @@ if (process.argv[2] === 'list') {
   });
 }
 // node hw2.js read 1 輸出 id 為 1 的書籍
-if (process.argv[2] === 'read') {
-  const id = process.argv[3];
-
+function readBook(id) {
   getBookById(id).on('response', (res) => {
     if (res.statusCode === 404) {
       console.log('404 找不到資料');
@@ -117,9 +136,7 @@ if (process.argv[2] === 'read') {
   });
 }
 // node hw2.js delete 1 刪除 id 為 1 的書籍
-if (process.argv[2] === 'delete') {
-  const id = process.argv[3];
-
+function deleteBook(id) {
   deleteBookById(id).on('response', (res) => {
     console.log(res.statusCode);
     if (res.statusCode === 404) {
@@ -147,10 +164,7 @@ if (process.argv[2] === 'create') {
   });
 }
 // node hw2.js update 1 "new name" 更新 id 為 1 的書名為 new name
-if (process.argv[2] === 'update') {
-  const id = process.argv[3];
-  const bookName = process.argv[4];
-
+function updateBook(id, bookName) {
   updBook(id, bookName).on('response', (res) => {
     console.log(res.statusCode);
     if (res.statusCode === 404) {

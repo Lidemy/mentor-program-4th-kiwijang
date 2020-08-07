@@ -6,18 +6,24 @@ import process from 'process';
  * @param {string} name 搜尋國家字串
  */
 function searchCountry(name) {
-  const req = request
+  const res = request
     .get(`https://restcountries.eu/rest/v2/name/${name}`, (err) => {
       if (err) {
         console.log(err);
       }
     });
-  return req;
+  return res;
 }
 
 // 印出相關國家
 const inputName = process.argv[2];
+
+
 searchCountry(inputName).on('response', (res) => {
+  if (!inputName) {
+    console.log('請輸入國家名稱');
+    return;
+  }
   if (res.statusCode === 404) {
     console.log('404 找不到資料');
     return;
