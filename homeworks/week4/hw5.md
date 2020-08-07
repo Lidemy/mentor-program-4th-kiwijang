@@ -292,8 +292,8 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
     對封包有無加密。HTTPS 用 TLS 來加密封包。
 
 1. 你知道 localhost 跟 127.0.0.1 是什麼  
-    localhot：是不經網絡卡傳輸的，它不受網路防火牆和網絡卡相關的的限制。
-    127.0.0.1：是通過網絡卡傳輸的，它依賴網絡卡，並受到網路防火牆和網絡卡相關的限制。
+    localhot：是不經網絡卡傳輸的，它不受網路防火牆和網絡卡相關的的限制。  
+    127.0.0.1：是通過網絡卡傳輸的，它依賴網絡卡，並受到網路防火牆和網絡卡相關的限制。  
     IPV6 協議將 127.0.0.1 解析為 ::1 (127.0.0.1 ipv6的形式)
 
       > 關於從網域找 IP 補充: 我們在瀏覽器輸入 google.com (網域) 的時候，電腦會先去解析它對應到哪個 IP，快取沒有的話就去 hosts 檔案找。
@@ -301,8 +301,8 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
       [利用 hosts 檔案保護你的上網環境](https://blog.miniasp.com/post/2009/03/26/Using-hosts-file-protect-your-networking-environment)
 
 1. 你知道 GET 與 POST 的差別  
-  GET 為取得資源、有限制大小，資料以 Query String（一種Key/Vaule的編碼方式）加在我們要請求的地址(URL)後面。
-  POST 為傳送資源，資料帶在 body(payload) 裡，可以透過 header 的 請求標頭 Accept、設定傳到伺服器的資料格式(Content-Type)。
+  GET 為取得資源、有限制大小，資料以 Query String（一種Key/Vaule的編碼方式）加在我們要請求的地址(URL)後面。  
+  POST 為傳送資源，資料帶在 body(payload) 裡，可以透過 header 的 請求標頭 Accept、設定傳到伺服器的資料格式(Content-Type)。  
 
       > Content-Type 常見的格式類型如下：(來源: [Postman 常見的 Content-type](https://medium.com/hobo-engineer/ricky%E7%AD%86%E8%A8%98-postman-%E5%B8%B8%E8%A6%8B%E7%9A%84-content-type-b17a75396668))
       text/html ： HTML格式
