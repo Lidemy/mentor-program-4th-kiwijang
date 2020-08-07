@@ -29,17 +29,16 @@
 
 ### 📑使用 API 過程 (Web API)
 (前端)  
-首先根據 HTTP 協定的動詞，對這個網址發出 http request。
+首先根據 HTTP 協定的動詞，對這個網址發出 http request。  
 發出 http request 的程式首先會先看瀏覽器的 DNS 快取(Cache)有沒有對應 IP(瀏覽器沒有 DNS 快取的話會去 hosts 文件找)，沒有的話，就去 DNS Server 查這個 URI 的 IP 位置。  
-(前端先找要把包裹寄去哪。
-👤前端:伺服器先生家的地址在哪呢?
+(前端先找要把包裹寄去哪。  
+👤前端:伺服器先生家的地址在哪呢?  
 👥瀏覽器:你要的答案就在 browser 快取/系統 hosts 文件 或是 DNS Server 那。)。
 
 前端拿到 IP 以後就發 http request 去 server。  
 (前端照著 HTTP 協定指定的格式寫上地址(IP) 寄包裹(http request) 給後端伺服器)。  
 
-傳輸過程: 基於 TCP 協定，這個包裹因為運輸車容量太小了，被分裝成一份份的小包裹(可被傳輸的單位)進行傳輸，每個被切分的小包裹
-都有編號。而這些小包裹一一到達 server 後，會再照編號順序組裝回來。
+傳輸過程: 基於 TCP 協定，這個包裹因為運輸車容量太小了，被分裝成一份份的小包裹(可被傳輸的單位)進行傳輸，每個被切分的小包裹都有編號。而這些小包裹一一到達 server 後，會再照編號順序組裝回來。
 
 (後端)  
 server 收到 http request 後，檢查請求方的目的地 IP 是否是自己，不是的話就直接丟掉。  
@@ -56,13 +55,13 @@ server 收到 http request 後，檢查請求方的目的地 IP 是否是自己�
 
 🔖 下圖為基於 UDP 協定的 DNS 協定。
 發 http request 前，會到 DNS 伺服器查詢 IP 位置，  
-可是這麼長的網址不是要查很久嗎?(請看下面 [DNS](#dns) 的解釋)。  
+可是這麼長的網址不是要查很久嗎?(請看下面 [DNS](#-dns-是什麼我可以知道它在哪理嗎) 的解釋)。  
 總之會從最後一個(第一網域開始查)，是一個是樹狀結構的查詢，在不同層也許會跟不同 DNS 伺服器要 IP。
-![dns](/homeworks/week4/img/dns.PNG)
+![dns](/homeworks/week4/img/dns.PNG)  
 📓圖源: [粘添壽 網路規劃與管理技術：DNS 系統功能](https://www.youtube.com/watch?v=KIv5Ks13uIM&list=PLWCTS9kq2MwQ88XuCjWXAu4ij4OQTkVqp&index=62)
 
 🔖 下圖為 TCP/IP 協定的架構圖。網卡就是一種 Network Interface。
-![tcp/ip](/homeworks/week4/img/tcpip0.PNG)
+![tcp/ip](/homeworks/week4/img/tcpip0.PNG)  
 📓圖源: [Fundamentals of Network Communication](https://www.coursera.org/lecture/fundamentals-network-communications/tcp-ip-architecture-and-routing-examples-RJ6pg?authMode=signup&isNewUser=true)
 
 ---
@@ -151,18 +150,15 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
 
 200 OK 頁面應更新為新頁面、301 Found、400 Bad Request、404 Not Found、500 Internal Server Error。
 
-1. 415 Unsupported Media Type
-  伺服器要求 json 結果你傳 form-data 就會出現這個。  
-  被請求資源的多媒體類型不被伺服器支援，因此該請求被拒絕。
+1. 415 Unsupported Media Type  
+伺服器要求 json 結果你傳 form-data 就會出現這個。  
+被請求資源的多媒體類型不被伺服器支援，因此該請求被拒絕。
+2. 304 Not Modified  
+檔案沒有更新，可繼續使用被快取起來的資源。
+3. 204 No Content  
+伺服器成功處理了請求，沒有返回任何內容。
 
-2. 304 Not Modified
-  檔案沒有更新，可繼續使用被快取起來的資源。
-
-3. 204 No Content
-  伺服器成功處理了請求，沒有返回任何內容。
-
-參考:
-- [HTTP狀態碼](https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81)
+參考: [HTTP狀態碼](https://zh.wikipedia.org/wiki/HTTP%E7%8A%B6%E6%80%81%E7%A0%81)
 
 ## 假設你現在是個餐廳平台，需要提供 API 給別人串接並提供基本的 CRUD 功能，包括：回傳所有餐廳資料、回傳單一餐廳資料、刪除餐廳、新增餐廳、更改餐廳，你的 API 會長什麼樣子？請提供一份 API 文件。
 
@@ -276,7 +272,7 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
 ---
 
 ## 自我檢測
-1. 你知道網路背後大概的運作模式
+1. 你知道網路背後大概的運作模式  
     這兩個咚咚還沒看完@@
     - [TCP/IP 協定與 Internet 網路 ](http://tsnien.idv.tw/Internet_WebBook/Internet.html)  
       本書是針對系統工程師維護或架設網路設計的教材，著重於 Ethernet 網路架設、IP 網路連結、TCP Socket 介面、RPC 網路程式開發。
@@ -286,16 +282,16 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
       讓學生了解 TCP/IP 網路的運作原理。
       使學生具有規劃與管理資訊網路之能力。
 
-1. 你知道什麼是 Request 跟 Response
-   前後端溝通的方式: 請求與回應。
+1. 你知道什麼是 Request 跟 Response  
+    前後端溝通的方式: 請求與回應。
 
-1. 你知道什麼是 DNS 以及運作原理
-    網域名稱系統 Domain Name System，往上看 [DNS](#dns)。
+1. 你知道什麼是 DNS 以及運作原理  
+    網域名稱系統 Domain Name System，往上看 [DNS](#-dns-是什麼我可以知道它在哪理嗎)。
 
-1. 你知道 HTTP 與 HTTPS 的差異
+1. 你知道 HTTP 與 HTTPS 的差異  
     對封包有無加密。HTTPS 用 TLS 來加密封包。
 
-1. 你知道 localhost 跟 127.0.0.1 是什麼
+1. 你知道 localhost 跟 127.0.0.1 是什麼  
     localhot：是不經網絡卡傳輸的，它不受網路防火牆和網絡卡相關的的限制。
     127.0.0.1：是通過網絡卡傳輸的，它依賴網絡卡，並受到網路防火牆和網絡卡相關的限制。
     IPV6 協議將 127.0.0.1 解析為 ::1 (127.0.0.1 ipv6的形式)
@@ -304,7 +300,7 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
       所以我們可以利用網域→IP 特性，到 hosts 檔案把有問題的網域對應的 IP 改成自己的，這樣就算去拜訪有危險的網域，也不會真的前往他們的 server。
       [利用 hosts 檔案保護你的上網環境](https://blog.miniasp.com/post/2009/03/26/Using-hosts-file-protect-your-networking-environment)
 
-1. 你知道 GET 與 POST 的差別
+1. 你知道 GET 與 POST 的差別  
   GET 為取得資源、有限制大小，資料以 Query String（一種Key/Vaule的編碼方式）加在我們要請求的地址(URL)後面。
   POST 為傳送資源，資料帶在 body(payload) 裡，可以透過 header 的 請求標頭 Accept、設定傳到伺服器的資料格式(Content-Type)。
 
@@ -328,17 +324,17 @@ HTTP status code 表明 HTTP 要求是否已經被完成。回應分五種:
       multipart/form-data ： 需要在表單中進行文檔上傳時，就需要使用該格式
       以上就是我們在日常的開發中，經常會用到的若干content-type的內容格式。
 
-1. 你知道常用的 HTTP Header
+1. 你知道常用的 HTTP Header  
 可，google 到很多。
 
-1. 你知道什麼是 API
+1. 你知道什麼是 API  
 如上文。
 
-1. 你會使用 node.js 寫出串接 API 的程式
+1. 你會使用 node.js 寫出串接 API 的程式  
 用套件，如 hw1-4。
 
-1. 你知道 HTTP method 有哪些
+1. 你知道 HTTP method 有哪些  
 GET、POST、DELET、PUT、PATCH、OPTION....
 
-1. 你知道基本的 HTTP statud code，像是 200、301、400、404、500
+1. 你知道基本的 HTTP statud code，像是 200、301、400、404、500  
 如上文。
