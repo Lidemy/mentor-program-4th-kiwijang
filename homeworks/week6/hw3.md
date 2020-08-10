@@ -40,8 +40,8 @@
   
 ## 請問 position: static, relative, absolute 跟 fixed 的差別是什麼？
 - static  
-  瀏覽器預設的排版方式。  
-以下都脫離瀏覽器的 static 自動排版，不會擠到其他元素:  
+  瀏覽器預設的排版方式。
+#### 以下都脫離瀏覽器的 static 自動排版，不會擠到其他元素:  
 - relative  
   以元素自己左上角為原點，去移動 top、left、right、bottom。  
 - fixed  
