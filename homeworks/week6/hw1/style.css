@@ -1,3 +1,8 @@
+body,
+html {
+  font-size: 14px;
+  font-family: Questrial, Microsoft JhengHei, sans-serif;
+}
 .container {
   margin: 0 auto;
   max-width: 1920px;
