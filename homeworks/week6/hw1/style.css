@@ -1,3 +1,8 @@
+body,
+html {
+  font-size: 14px;
+  font-family: Questrial, Microsoft JhengHei, sans-serif;
+}
 .container {
   margin: 0 auto;
   max-width: 1920px;
@@ -15,11 +20,20 @@ h3 {
   font-size: 18px;
 }
 header {
+  box-sizing: border-box;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  background-color: #fff;
+  top: 0;
   min-height: 84px;
-  padding: 0 30px;
+  width: 100%;
+  max-width: 1920px;
+  min-width: 375px;
+  padding: 0 121px 0 96px;
+  z-index: 100;
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
 }
 h2.header__logo {
   display: inline-block;
@@ -31,7 +45,6 @@ h2.header__logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
   flex-wrap: wrap;
 }
 .header__menu > h3 {
@@ -70,12 +83,19 @@ section > p {
 }
 
 .jumbotron {
-  max-height: 290px;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 580px;
+  background-image: url("./img/jumbotron.png");
+  background-size: cover;
+  background-repeat: no-repeat; 
+  background-position: center; /* Center the image */
 }
-.jumbotron > img {
-  object-fit: contain;
-  width: 100%;
+.jumbotron > div {
+  color: white;
+  font-size: 60px;  
+  font-weight: bold
 }
 
 h2.section__title {
@@ -190,6 +210,9 @@ footer {
   .section__info {
     padding: 15px;
     flex-direction: column;
+  }
+  .jumbotron {
+    height: 500px;
   }
   .clubwrap {
     margin-top: 30px;
