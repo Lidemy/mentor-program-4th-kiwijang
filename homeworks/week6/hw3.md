@@ -1,9 +1,9 @@
 ## 請找出三個課程裡面沒提到的 HTML 標籤並一一說明作用。
-1. [<template>](https://www.w3schools.com/tags/tag_template.asp)  
+1. `<template>` [w3schools](https://www.w3schools.com/tags/tag_template.asp)  
     隱藏 `<template>` 區塊，要用的時候再用 js 複製一份顯示。(奇耙)
-2. [<time>](https://www.w3schools.com/tags/tag_time.asp)  
+2. `<time>` [w3schools](https://www.w3schools.com/tags/tag_time.asp)  
     語意化標籤，讓機器知道這裡是在講時間。
-3. [<video>](https://www.w3schools.com/tags/tag_video.asp)  
+3. `<video>` [w3schools](https://www.w3schools.com/tags/tag_video.asp)  
     嵌入影片的標籤。
     ``` html
     <video width="320" height="240" controls>
