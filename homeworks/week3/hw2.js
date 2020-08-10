@@ -14,7 +14,7 @@ function isNarc(i) {
     return true;
   }
   const iArr = String(i).split('');
-  const result = iArr.map(x => x ** String(i).length)
+  const result = iArr.map((x) => x ** String(i).length)
     .reduce((front, cur) => front + cur);
   if (result === i) {
     return true;
@@ -23,7 +23,7 @@ function isNarc(i) {
 }
 
 function solve(line) {
-  const [inputNum1, inputNum2] = line.split(' ').map(x => Number(x));
+  const [inputNum1, inputNum2] = line.split(' ').map((x) => Number(x));
 
   for (let i = inputNum1; i <= inputNum2; i += 1) {
     if (isNarc(i)) {

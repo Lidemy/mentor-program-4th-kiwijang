@@ -101,7 +101,7 @@ switch (action) {
     deleteBook(params);
     break;
   case 'create':
-    createBook(params);
+    newBook(params);
     break;
   case 'update':
     updateBook(params, args[4]);
@@ -149,9 +149,7 @@ function deleteBook(id) {
   });
 }
 // node hw2.js create "I love coding" 新增一本名為 I love coding 的書
-if (process.argv[2] === 'create') {
-  const bookName = process.argv[3];
-
+function newBook(bookName) {
   createBook(bookName).on('response', (res) => {
     console.log(res.statusCode);
     if (res.statusCode === 404) {

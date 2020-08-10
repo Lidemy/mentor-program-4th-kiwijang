@@ -18,7 +18,6 @@ function searchCountry(name) {
 // 印出相關國家
 const inputName = process.argv[2];
 
-
 searchCountry(inputName).on('response', (res) => {
   if (!inputName) {
     console.log('請輸入國家名稱');
@@ -36,8 +35,8 @@ searchCountry(inputName).on('response', (res) => {
       ============
       國家：${data[i].name}
       首都：${data[i].capital}
-      貨幣：${data[i].currencies.map(x => x.code).join(', ')}
-      國碼：${data[i].callingCodes.map(x => x).join(', ')}
+      貨幣：${data[i].currencies.map((x) => x.code).join(', ')}
+      國碼：${data[i].callingCodes.map((x) => x).join(', ')}
       `);
     }
   });

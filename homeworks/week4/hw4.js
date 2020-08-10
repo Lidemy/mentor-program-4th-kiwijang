@@ -29,7 +29,7 @@ getTopGames().on('response', (res) => {
 
   getTopGames().on('complete', ({ body }) => {
     const data = JSON.parse(body);
-    const result = data.top.map(x => `${x.viewers} ${x.game.name}`);
+    const result = data.top.map((x) => `${x.viewers} ${x.game.name}`);
     console.log(result.join('\n'));
   });
 });
