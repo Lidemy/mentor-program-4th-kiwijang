@@ -50,5 +50,5 @@
   根據某個元素的左上角為原點(往上層找不是 static 的元素)去定位。  
   都找不到就會以 body 的左上角為原點做定位。  
 - sticky  
-  IE9 不支援。  
+  IE 不支援。  
   平常是 static，滾到設定的 top、left、right、bottom 時就會黏在那裡。  
