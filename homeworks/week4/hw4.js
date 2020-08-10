@@ -22,14 +22,22 @@ function getTopGames() {
 
 // 印出目前觀看人數跟遊戲名稱
 getTopGames().on('response', (res) => {
-  if (res.statusCode === 404) {
-    console.log('404 找不到資料');
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    if (res.statusCode === 404) {
+      console.log('404 找不到資料');
+      return;
+    }
+    console.log('發生錯誤 ', res.statusCode, res.statusMessage);
     return;
   }
 
   getTopGames().on('complete', ({ body }) => {
-    const data = JSON.parse(body);
-    const result = data.top.map((x) => `${x.viewers} ${x.game.name}`);
-    console.log(result.join('\n'));
+    try {
+      const data = JSON.parse(body);
+      const result = data.top.map((x) => `${x.viewers} ${x.game.name}`);
+      console.log(result.join('\n'));
+    } catch (error) {
+      console.log(error);
+    }
   });
 });

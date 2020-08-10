@@ -75,11 +75,15 @@ function updBook(id, bookName) {
 // 印出全部書籍
 function showAllBooks() {
   getTopBooksArr().on('complete', (data) => {
-    const books = JSON.parse(data.body);
-    console.log('\n');
-    console.log('目前所有書籍:\n');
-    for (let i = 0; i < books.length; i += 1) {
-      console.log(`${books[i].id} ${books[i].name}`);
+    try {
+      const books = JSON.parse(data.body);
+      console.log('\n');
+      console.log('目前所有書籍:\n');
+      for (let i = 0; i < books.length; i += 1) {
+        console.log(`${books[i].id} ${books[i].name}`);
+      }
+    } catch (error) {
+      console.log(error);
     }
   });
 }
@@ -113,25 +117,36 @@ switch (action) {
 // node hw2.js list 印出前二十本書的 id 與書名
 function listBooks() {
   getTopBooksArr(20).on('complete', ({ body }) => {
-    const books = JSON.parse(body);
-    for (let i = 0; i < 20; i += 1) {
-      if (books[i]) {
-        console.log(`${books[i].id} ${books[i].name}`);
+    try {
+      const books = JSON.parse(body);
+      for (let i = 0; i < 20; i += 1) {
+        if (books[i]) {
+          console.log(`${books[i].id} ${books[i].name}`);
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
   });
 }
 // node hw2.js read 1 輸出 id 為 1 的書籍
 function readBook(id) {
   getBookById(id).on('response', (res) => {
-    if (res.statusCode === 404) {
-      console.log('404 找不到資料');
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      if (res.statusCode === 404) {
+        console.log('404 找不到資料');
+        return;
+      }
+      console.log('發生錯誤 ', res.statusCode, res.statusMessage);
       return;
     }
-
     getBookById(id).on('complete', ({ body }) => {
-      const book = JSON.parse(body);
-      console.log(`${book.id} ${book.name}`);
+      try {
+        const book = JSON.parse(body);
+        console.log(`${book.id} ${book.name}`);
+      } catch (error) {
+        console.log(error);
+      }
     });
   });
 }
@@ -139,8 +154,12 @@ function readBook(id) {
 function deleteBook(id) {
   deleteBookById(id).on('response', (res) => {
     console.log(res.statusCode);
-    if (res.statusCode === 404) {
-      console.log('404 找不到資料');
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      if (res.statusCode === 404) {
+        console.log('404 找不到資料');
+        return;
+      }
+      console.log('發生錯誤 ', res.statusCode, res.statusMessage);
       return;
     }
     console.log('刪除成功!');
@@ -152,8 +171,12 @@ function deleteBook(id) {
 function newBook(bookName) {
   createBook(bookName).on('response', (res) => {
     console.log(res.statusCode);
-    if (res.statusCode === 404) {
-      console.log('404 找不到資料');
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      if (res.statusCode === 404) {
+        console.log('404 找不到資料');
+        return;
+      }
+      console.log('發生錯誤 ', res.statusCode, res.statusMessage);
       return;
     }
     console.log('新增成功!');
@@ -165,8 +188,12 @@ function newBook(bookName) {
 function updateBook(id, bookName) {
   updBook(id, bookName).on('response', (res) => {
     console.log(res.statusCode);
-    if (res.statusCode === 404) {
-      console.log('404 找不到資料');
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      if (res.statusCode === 404) {
+        console.log('404 找不到資料');
+        return;
+      }
+      console.log('發生錯誤 ', res.statusCode, res.statusMessage);
       return;
     }
     console.log('修改成功!');

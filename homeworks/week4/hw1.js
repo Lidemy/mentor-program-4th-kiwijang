@@ -19,10 +19,14 @@ function getTopBooksArr(_limit) {
 
 // 印出前十
 getTopBooksArr(10).on('complete', ({ body }) => {
-  const books = JSON.parse(body);
-  for (let i = 0; i < 20; i += 1) {
-    if (books[i]) {
-      console.log(`${books[i].id} ${books[i].name}`);
+  try {
+    const books = JSON.parse(body);
+    for (let i = 0; i < body.length; i += 1) {
+      if (books[i]) {
+        console.log(`${books[i].id} ${books[i].name}`);
+      }
     }
+  } catch (e) {
+    console.log(e);
   }
 });

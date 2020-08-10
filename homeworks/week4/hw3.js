@@ -23,21 +23,29 @@ searchCountry(inputName).on('response', (res) => {
     console.log('請輸入國家名稱');
     return;
   }
-  if (res.statusCode === 404) {
-    console.log('404 找不到資料');
+  if (res.statusCode >= 200 && res.statusCode < 300) {
+    if (res.statusCode === 404) {
+      console.log('404 找不到資料');
+      return;
+    }
+    console.log('發生錯誤 ', res.statusCode, res.statusMessage);
     return;
   }
 
   searchCountry(inputName).on('complete', ({ body }) => {
-    const data = JSON.parse(body);
-    for (let i = 0; i < data.length; i += 1) {
-      console.log(`
-      ============
-      國家：${data[i].name}
-      首都：${data[i].capital}
-      貨幣：${data[i].currencies.map((x) => x.code).join(', ')}
-      國碼：${data[i].callingCodes.map((x) => x).join(', ')}
-      `);
+    try {
+      const data = JSON.parse(body);
+      for (let i = 0; i < data.length; i += 1) {
+        console.log(`
+        ============
+        國家：${data[i].name}
+        首都：${data[i].capital}
+        貨幣：${data[i].currencies.map((x) => x.code).join(', ')}
+        國碼：${data[i].callingCodes.map((x) => x).join(', ')}
+        `);
+      }
+    } catch (error) {
+      console.log(error);
     }
   });
 });
