@@ -27,10 +27,10 @@ h3 {
 .red {
   color: #e74149;
 }
-.typegroupWrap > label {
+.typegroup_wrap > label {
   display: block;
 }
-.typegroupWrap > label:nth-child(1) > input {
+.typegroup_wrap > label:nth-child(1) > input {
   margin-bottom: 23px;
 }
 input {
