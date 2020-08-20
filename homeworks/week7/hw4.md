@@ -141,7 +141,7 @@ event delegation(事件委派) 又名 event propagation(事件傳遞)。
 
 事件傳遞一定會經過先補獲後冒泡的過程，我們可以使用 `event.stopPropagation()` 來阻止事件繼續傳遞，哪個地方放了 `event.stopPropagation()` 事件傳遞就會停在那個監聽器的元素。  
 
-(下圖)事件傳遞停止在 `event.stopPropagation()` 那裡。
+(下圖)事件傳遞停止在 `event.stopPropagation()` 那裡。  
 ![stoppropagation](/homeworks/week7/img/stoppropagation.gif)  
 
 ### event.stopImmediatePropagation()
@@ -150,7 +150,7 @@ event delegation(事件委派) 又名 event propagation(事件傳遞)。
 因為可以在同一個元素上對同一個事件加上多個監聽器，當我們在其中一個 `event.stopPropagation()` 時，事件會傳遞到這批事件監聽器後才停止傳遞。  
 為了讓事件停止傳遞在這一行監聽器，可以使用 `event.stopImmediatePropagation()`，這樣這行之後註冊在同一個元素、同一個事件的事件監聽器完全不會被觸發，因為沒有事件傳遞了。  
 
-(下圖)事件傳遞停止傳入同元素中註冊的其它相同事件類型之監聽器。  
+(下圖)事件傳遞停止傳入同元素中註冊的其它相同事件類型之監聽器。   
 ![stopim](/homeworks/week7/img/stopim.gif)
 
 ## 自我檢測
