@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       // 新增
-      const newTodo = new Todo(todoContent);
+      const newTodo = new Todo(escapeHtml(todoContent));
       newTodo.create(newTodo);
       document.querySelector('#create__input').value = '';
       refresh();
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     // 新增
-    const newTodo = new Todo(todoContent);
+    const newTodo = new Todo(escapeHtml(todoContent));
     newTodo.create(newTodo);
     document.querySelector('#create__input').value = '';
     refresh();
@@ -122,4 +122,13 @@ document.addEventListener('DOMContentLoaded', () => {
     e.currentTarget.classList.add('active');
     reloadTodoList('complete');
   });
+
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
 });
