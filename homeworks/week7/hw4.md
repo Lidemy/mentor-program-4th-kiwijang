@@ -73,9 +73,9 @@ document.getElementById('myEle').addEventListener('click',(e)=>{//...})
 - [What is the exact difference between currentTarget property and target property in javascript](https://stackoverflow.com/questions/10086427/what-is-the-exact-difference-between-currenttarget-property-and-target-property)  
 
 順帶一提，可以自己 new 一個 EventTarget 和一個 Event 來玩。  
-[MDN - Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)
-[MDN - Event()](https://developer.mozilla.org/en-US/docs/Web/API/Event)
-[MDN - CustomEvent()](https://developer.mozilla.org/zh-TW/docs/Web/API/CustomEvent/CustomEvent)  
+- [MDN - Creating and triggering events](https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events)
+- [MDN - Event()](https://developer.mozilla.org/en-US/docs/Web/API/Event)
+- [MDN - CustomEvent()](https://developer.mozilla.org/zh-TW/docs/Web/API/CustomEvent/CustomEvent)  
 ``` javascript
 let elem = new EventTarget();
 let evt = new Event('hina');
