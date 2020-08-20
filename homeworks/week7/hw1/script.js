@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const typegroupEleErrorClassList = typegroupEle.nextElementSibling.classList;
 
   function isInputpass(ele) {
-    if (ele.value !== '') {
+    if (ele.value) {
       ele.nextElementSibling.classList.remove('visible');
       ele.classList.remove('input-bd-red');
       return true;
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!ele) {
       return false;
     }
-    if (ele.value === '') {
+    if (!ele.value) {
       ele.nextElementSibling.classList.add('visible');
       ele.classList.add('input-bd-red');
       window.location.hash = '';
