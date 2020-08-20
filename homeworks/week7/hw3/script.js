@@ -29,22 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  document.querySelector('#create__input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      const todoContent = document.querySelector('#create__input').value;
-      if (todoContent.trim() === '') {
-        window.alert('請輸入內容!');
-        return;
-      }
-      // 新增
-      const newTodo = new Todo(escapeHtml(todoContent));
-      newTodo.create(newTodo);
-      document.querySelector('#create__input').value = '';
-      refresh();
-    }
-  });
-  document.querySelector('.create__btn').addEventListener('click', () => {
+  function createTodo() {
     const todoContent = document.querySelector('#create__input').value;
     if (todoContent.trim() === '') {
       window.alert('請輸入內容!');
@@ -55,6 +40,15 @@ document.addEventListener('DOMContentLoaded', () => {
     newTodo.create(newTodo);
     document.querySelector('#create__input').value = '';
     refresh();
+  }
+  document.querySelector('#create__input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      createTodo();
+    }
+  });
+  document.querySelector('.create__btn').addEventListener('click', () => {
+    createTodo();
   });
 
   document.querySelector('.list').addEventListener('click', (e) => {
