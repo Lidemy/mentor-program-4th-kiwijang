@@ -133,7 +133,7 @@ event delegation(事件委派) 又名 event propagation(事件傳遞)。
 
 有些元素會有預設的動作，譬如點 submit 按鈕會送出表單後導到 action 頁面，點擊 a 會跳去超連結。原因是觸發到這些元素上的預設事件，所以我們可以利用 `event.preventDefault()` 來取消這些事件的預設行為。  
 
-(下圖)預設事件會執行送出表單後導到 action 頁面的動作，加入 `event.preventDefault()` 後就不會執行事件預設的動作了。
+(下圖)預設事件會執行送出表單後導到 action 頁面的動作，加入 `event.preventDefault()` 後就不會執行事件預設的動作了。  
 ![preventdefault](/homeworks/week7/img/preventdefault.gif)  
 
 ### event.stopPropagation()
