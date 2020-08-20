@@ -100,8 +100,9 @@ elem.dispatchEvent(evt);
   |-------|
 ```  
 ## 什麼是 event delegation，為什麼我們需要它？
-event delegation(事件委派) 又名 event propagation(事件傳遞)。  
-所有事件傳遞都會有捕獲和冒泡階段(除非你特別去設定不要再傳了)。  
+event delegation(事件委派) 又名 event proxy(事件代理)。把事件監聽註冊在父元素，以避免子元素還沒產生或太多個。  
+
+我們從 event propagation(事件傳遞)知道所有事件傳遞都會有捕獲和冒泡階段(除非你特別去設定不要再傳了)。  
 
 被註冊事件監聽的元素，可能是一個巢狀的 html (譬如:你註冊在 ul 上，而它代表一整個 ul 與它裡面的元素們)，如下:  
 ``` html
