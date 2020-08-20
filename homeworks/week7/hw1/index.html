@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>week6-hw2 活動報名表單</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script src="./script.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>新拖延運動報名表單</h1>
+    <div>
+      <p>活動日期：2020/12/10 ~ 2020/12/11</p>
+      <p>活動地點：台北市大安區新生南路二段1號</p>
+    </div>
+    <h3 class="red mb-55">*必填</h3>
+    <form id="form1">
+      <h2 id="nickname">暱稱 <span class="red">*</span></h2>
+      <input name="nickname" type="text" placeholder="您的回答" />
+      <div class="red errormsg">請填寫暱稱</div>
+      <h2 id="email">電子郵件 <span class="red">*</span></h2>
+      <input name="email" type="email" placeholder="您的電子郵件" />
+      <div class="red errormsg">請填寫電子郵件</div>
+      <h2 id="tel">手機號碼 <span class="red">*</span></h2>
+      <input name="tel" type="text" placeholder="您的手機號碼" />
+      <div class="red errormsg">請填寫手機號碼</div>
+      <h2 id="typegroup">報名類型 <span class="red">*</span></h2>
+      <div id="typegroup_wrap" class="typegroup_wrap">
+        <label>
+          <input type="radio" name="typegroup" />
+          躺在床上用想像力實作
+        </label>
+        <label>
+          <input type="radio" name="typegroup" />
+          趴在地上滑手機找現成的
+        </label>
+      </div>
+      <div class="red errormsg">請選擇報名類型</div>
+      <h2 id="known">怎麼知道這個活動的？ <span class="red">*</span></h2>
+      <input name="known" type="text" placeholder="您的回答" />
+      <div class="red errormsg">請填寫</div>
+      <h2 class="mb-12">其他</h2>
+      <p class="mt-12">對活動的一些建議</p>
+      <input name="suggest" type="text" placeholder="您的回答" />
+      <button class="submit_btn" type="submit">提交</button>
+    </form>
+    <div>請勿透過表單送出您的密碼。</div>
+  </div>
+  <footer>© 2020 © Copyright. All rights Reserved.</footer>
+</body>
+
+</html>
