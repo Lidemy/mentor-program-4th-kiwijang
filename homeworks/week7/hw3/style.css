@@ -1,0 +1,120 @@
+.container {
+  width: 500px;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 #afd1b0;
+  padding: 50px;
+  word-break: break-all;
+  line-height: 1.5;
+  letter-spacing: 1px;
+}
+button {
+  border: 0;
+  border-radius: 0;
+  outline: none;
+}
+#create__input {
+  outline: none;
+  box-sizing: border-box;
+  height: 30px;
+  line-height: 1;
+  border: 1px solid black;
+  background-color: #eee;
+  opacity: 0.3;
+  transition: 0.3s;
+}
+#create__input:hover {
+  transition: 0.3s;
+  opacity: 1;
+}
+#create__input:focus {
+  border: 1px solid #000;
+  opacity: 1;
+}
+.create__btn {
+  box-sizing: border-box;
+  width: 50px;
+  height: 30px;
+  background-color: black;
+  color: white;
+  border: 0;
+  margin-left: 5px;
+  transition: 0.5s;
+}
+.create__btn:hover {
+  opacity: 0.5;
+  transition: 0.5s;
+}
+.tab {
+  display: flex;
+  margin-top: 20px;
+}
+.tab > button {
+  flex: 1;
+  background-color: #fff;
+  border: 0;
+  outline: none;
+  padding: 10px;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.tab > button:nth-child(even) {
+  border-left: 0px solid #000;
+} 
+.tab > button.active {
+  border-bottom: 1px solid #fff;
+}
+.list {  
+  border: 1px solid #000;
+  border-top: 0;
+  padding: 30px;
+}
+.list > .list__todoitem {
+  margin: 30px 50px;
+}
+input[type=checkbox]:checked + .icon + .line-through{
+  text-decoration: line-through;
+}
+.line-through {
+  display: flex;
+  flex-direction: column;
+}
+.labelwrap {
+  display: block;
+  position: relative;
+  background-color: #eee;
+  padding: 10px;
+  transition: 0.5s;
+}
+.labelwrap:active {
+  transition: 0.5s;
+  background-color: #aaa;
+}
+.empty {
+  color: #aaa;
+}
+input[type='checkbox']:checked {
+  display: none;
+}
+input[type='checkbox']:checked + .icon::before{
+  display: inline;
+  content: '🌸';
+  position: relative;
+}
+.list__todoitem__deletebtn {
+  margin-top: 10px;
+  background-color: #ffadad;
+  color: white;
+  font-size: 0.8rem;
+  padding: 5px 8px;
+}
+.time {
+  color: #aaa;
+  font-size: 10px;
+}
