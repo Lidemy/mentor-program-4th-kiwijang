@@ -106,7 +106,23 @@ getData([
 會在 request header 帶著 `Origin: 所在網域`，對照 Server 端設定的白名單回傳 response header ` access-control-allow-origin: 可以接受的網域`。
 ### 預檢請求(preflight request)
 預檢請求會在主要請求前先發送一個預檢請求多確認 Server 是否有提供該 HTTP 方法(跟簡單請求一樣會檢查網域)。
-然後會限定主要請求必須在限定時間內請求完成 `Access-Control-Max-Age: 秒`。
+
+`Access-Control-Max-Age: 秒` 可以設定 cache 住 Response header 幾秒，在這段期間內都不用再對長的一樣的請求做預檢請求。
+
+參考: [Access-Control-Max-Age -MDN](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Access-Control-Max-Age)  
+
+---
+預檢請求之後傳回來的回應標頭(Response header)
+包含:
+-  `Access-Control-Allow-Methods: <method>, <method>, ...` 
+-  `Access-Control-Allow-Headers: <header-name>[, <header-name>]` 
+- `Access-Control-Max-Age: <delta-seconds>` 
+
+`Access-Control-Max-Age` 表示這個 Response header 內容可以被緩存多久。
+目的: n 秒以內都可以利用這個結果，不需要再發一次 preflight request
+過了 n 秒就會再發一次。
+
+---
 
 更多詳細內容可以去看: [CORS - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 

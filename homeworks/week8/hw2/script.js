@@ -6,9 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const limit = 5;
   let topFive = [];
   const xhr = new XMLHttpRequest();
-  if (xhr.readyState !== 4) {
-    document.querySelector('.loading').classList.remove('d-none');
-  }
+  document.querySelector('.loading').classList.remove('d-none'); // xhr.readyState === 0
+
   xhr.onload = () => {
     if (xhr.status >= 200 && xhr.status < 300) {
       try {
@@ -61,9 +60,8 @@ function getStream(gameName, offset) {
   // get top {limit} game streams
   const limit = 20;
   const xhr = new XMLHttpRequest();
-  if (xhr.readyState !== 4) {
-    document.querySelector('.loading').classList.remove('d-none');
-  }
+  document.querySelector('.loading').classList.remove('d-none'); // xhr.readyState === 0
+
   xhr.onload = () => {
     if (xhr.status >= 200 && xhr.status < 300) {
       try {

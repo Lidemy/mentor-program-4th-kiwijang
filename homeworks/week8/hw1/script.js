@@ -34,18 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function changePageInfo(prizeType) {
     document.querySelector('.box').classList.add('d-none');
     document.querySelector('.prizebox').classList.remove('d-none');
-    if (document.querySelector('.section-main').classList.contains('first-priz')) {
-      document.querySelector('.section-main').classList.remove('first-priz');
-    }
-    if (document.querySelector('.section-main').classList.contains('second-priz')) {
-      document.querySelector('.section-main').classList.remove('second-priz');
-    }
-    if (document.querySelector('.section-main').classList.contains('third-priz')) {
-      document.querySelector('.section-main').classList.remove('third-priz');
-    }
-    if (document.querySelector('.section-main').classList.contains('none-priz')) {
-      document.querySelector('.section-main').classList.remove('none-priz');
-    }
+    document.querySelector('.section-main').classList.remove('first-priz');
+    document.querySelector('.section-main').classList.remove('second-priz');
+    document.querySelector('.section-main').classList.remove('third-priz');
+    document.querySelector('.section-main').classList.remove('none-priz');
     switch (prizeType) {
       case 'FIRST':
         document.querySelector('.prizebox > h2').innerText = '恭喜你中頭獎了！日本東京來回雙人遊！';
