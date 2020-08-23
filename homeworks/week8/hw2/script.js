@@ -111,7 +111,7 @@ function getStream(gameName, offset) {
   xhr.onerror = () => {
     window.alert('在進行連線時發生錯誤，請檢查網路連線，謝謝您。');
   };
-  xhr.open('get', `https://api.twitch.tv/kraken/streams/?game=${gameName}&limit=${limit}&offset=${offset}`);
+  xhr.open('get', `https://api.twitch.tv/kraken/streams/?game=${encodeURIComponent(gameName)}&limit=${limit}&offset=${offset}`);
   xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
   xhr.setRequestHeader('Client-ID', 'n1k78ho4sgcual55b8sdmb40s5gogr');
   xhr.send();
