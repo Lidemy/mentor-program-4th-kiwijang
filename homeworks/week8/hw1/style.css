@@ -90,6 +90,23 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
 }
+.section-main.first-priz {
+  color: black;
+  background-image: url("./img/flight.jpg");
+}
+.section-main.second-priz {
+  color: black;
+  background-image: url("./img/tv.jpg");
+}
+.section-main.third-priz {
+  color: black;
+  background-image: url("./img/yt.jpg");
+}
+.section-main.none-priz {
+  color: white;
+  background-image: none;
+  background-color: black;
+}
 .box {
   box-sizing: border-box;
   display: flex;
