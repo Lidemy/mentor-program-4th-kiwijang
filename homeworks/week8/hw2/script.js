@@ -10,39 +10,40 @@ document.addEventListener('DOMContentLoaded', () => {
 
   xhr.onload = () => {
     if (xhr.status >= 200 && xhr.status < 300) {
+      let data = '';
       try {
-        const data = JSON.parse(xhr.response);
-        const result = data.top.map((x) => `${x.game.name}`);
-        let currentGame = '';
-        let offset = 0;
-        topFive = result;
-
-        for (let i = 0; i < topFive.length; i += 1) {
-          document.querySelector('.header__menu').innerHTML += `<h3>${topFive[i]}</h3>`;
-        }
-        document.querySelector('.header__menu').addEventListener('click', (e) => {
-          document.querySelectorAll('.header__menu > h3').forEach((x) => {
-            if (x.classList.contains('active')) {
-              x.classList.remove('active');
-            }
-            document.querySelector('.list').innerHTML = '';
-          });
-          if (e.target.tagName === 'H3') {
-            const idx = [...document.querySelectorAll('.header__menu > h3')].map((x) => x.textContent).indexOf(e.target.textContent);
-            e.target.classList.add('active');
-            getStream(topFive[idx], 0);
-            currentGame = topFive[idx];
-          }
-        });
-        document.querySelector('.list').addEventListener('click', (e) => {
-          if (e.target.tagName === 'BUTTON') {
-            getStream(currentGame, offset += 20);
-          }
-        });
-        document.querySelector('.loading').classList.add('d-none');
+        data = JSON.parse(xhr.response);
       } catch (err) {
         window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${err}`);
       }
+      const result = data.top.map((x) => `${x.game.name}`);
+      let currentGame = '';
+      let offset = 0;
+      topFive = result;
+
+      for (let i = 0; i < topFive.length; i += 1) {
+        document.querySelector('.header__menu').innerHTML += `<h3>${topFive[i]}</h3>`;
+      }
+      document.querySelector('.header__menu').addEventListener('click', (e) => {
+        document.querySelectorAll('.header__menu > h3').forEach((x) => {
+          if (x.classList.contains('active')) {
+            x.classList.remove('active');
+          }
+          document.querySelector('.list').innerHTML = '';
+        });
+        if (e.target.tagName === 'H3') {
+          const idx = [...document.querySelectorAll('.header__menu > h3')].map((x) => x.textContent).indexOf(e.target.textContent);
+          e.target.classList.add('active');
+          getStream(topFive[idx], 0);
+          currentGame = topFive[idx];
+        }
+      });
+      document.querySelector('.list').addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+          getStream(currentGame, offset += 20);
+        }
+      });
+      document.querySelector('.loading').classList.add('d-none');
     } else {
       window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${xhr.status} ${xhr.statusText}`);
     }
@@ -64,21 +65,25 @@ function getStream(gameName, offset) {
 
   xhr.onload = () => {
     if (xhr.status >= 200 && xhr.status < 300) {
+      let data = '';
       try {
-        const data = JSON.parse(xhr.response);
-        if (data.streams.length < limit) {
-          document.querySelector('.loadmore-btn').remove();
-          document.querySelector('.loading').classList.add('d-none');
-          return;
-        }
-        if (document.querySelector('.loadmore-btn')) {
-          document.querySelector('.loadmore-btn').remove();
-        }
-        if (document.querySelector('.list > p')) {
-          document.querySelector('.list').innerHTML = '';
-        }
-        for (let i = 0; i < limit; i += 1) {
-          document.querySelector('.list').innerHTML += `      
+        data = JSON.parse(xhr.response);
+      } catch (err) {
+        window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${err}`);
+      }
+      if (data.streams.length < limit) {
+        document.querySelector('.loadmore-btn').remove();
+        document.querySelector('.loading').classList.add('d-none');
+        return;
+      }
+      if (document.querySelector('.loadmore-btn')) {
+        document.querySelector('.loadmore-btn').remove();
+      }
+      if (document.querySelector('.list > p')) {
+        document.querySelector('.list').innerHTML = '';
+      }
+      for (let i = 0; i < limit; i += 1) {
+        document.querySelector('.list').innerHTML += `      
             <div class="box">
               <a class="box__preview" href="${data.streams[i].channel.url}" target="_blank">
                 <img alt="${data.streams[i].channel.description}" src="${data.streams[i].preview.large}">
@@ -94,14 +99,11 @@ function getStream(gameName, offset) {
               </div>
             </div>          
             `;
-        }
-        if (!document.querySelector('.loadmore-btn')) {
-          document.querySelector('.list').innerHTML += '<button class="loadmore-btn">more 20!</button>';
-        }
-        document.querySelector('.loading').classList.add('d-none');
-      } catch (err) {
-        window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${err}`);
       }
+      if (!document.querySelector('.loadmore-btn')) {
+        document.querySelector('.list').innerHTML += '<button class="loadmore-btn">more 20!</button>';
+      }
+      document.querySelector('.loading').classList.add('d-none');
     } else {
       window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${xhr.status} ${xhr.statusText}`);
     }

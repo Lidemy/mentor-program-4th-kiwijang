@@ -9,17 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const xhr = new XMLHttpRequest();
     xhr.onload = () => {
       if (xhr.status >= 200 && xhr.status < 400) {
+        let data = '';
         try {
-          const data = JSON.parse(xhr.response);
-          if (!data.prize) {
-            window.alert('系統不穩定，請再試一次');
-            return;
-          }
-
-          changePageInfo(data.prize);
+          data = JSON.parse(xhr.response);
         } catch (err) {
           window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${err}`);
         }
+        if (!data.prize) {
+          window.alert('系統不穩定，請再試一次');
+          return;
+        }
+
+        changePageInfo(data.prize);
       } else {
         window.alert('系統不穩定，請再試一次');
       }
