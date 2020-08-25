@@ -2,6 +2,9 @@
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-param-reassign */
 document.addEventListener('DOMContentLoaded', () => {
+  getTopFive(showTopFiveMenu);
+});
+function getTopFive(callbackForShow) {
   // get top {limit} games
   const limit = 5;
   let topFive = [];
@@ -19,7 +22,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const result = data.top.map((x) => `${x.game.name}`);
       topFive = result;
 
-      showTopFiveMenu(topFive);
+      if (typeof callbackForShow === 'function') {
+        callbackForShow(topFive);
+      } else {
+        console.log('親愛的程式員，你沒有傳顯示到畫面的方法，所以只有撈到資料');
+      }
 
       document.querySelector('.loading').classList.add('d-none');
     } else {
@@ -33,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   xhr.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
   xhr.setRequestHeader('Client-ID', 'n1k78ho4sgcual55b8sdmb40s5gogr');
   xhr.send();
-});
+}
 
 function showTopFiveMenu(topFive) {
   let currentGame = '';
@@ -49,20 +56,19 @@ function showTopFiveMenu(topFive) {
       document.querySelector('.list').innerHTML = '';
     });
     if (e.target.tagName === 'H3') {
-      const idx = [...document.querySelectorAll('.header__menu > h3')].map((x) => x.textContent).indexOf(e.target.textContent);
       e.target.classList.add('active');
-      getStream(topFive[idx], 0);
-      currentGame = topFive[idx];
+      getStream(e.target.textContent, 0, showStreams);
+      currentGame = e.target.textContent;
     }
   });
-  document.querySelector('.list').addEventListener('click', (e) => {
+  document.querySelector('.container').addEventListener('click', (e) => {
     if (e.target.tagName === 'BUTTON') {
-      getStream(currentGame, offset += 20);
+      getStream(currentGame, offset += 20, showStreams);
     }
   });
 }
 
-function getStream(gameName, offset) {
+function getStream(gameName, offset, callbackForShow) {
   // get top {limit} game streams
   const limit = 20;
   const xhr = new XMLHttpRequest();
@@ -77,7 +83,11 @@ function getStream(gameName, offset) {
         window.alert(`發生錯誤，請重新整理頁面再試一遍，或與程式管理員聯絡，謝謝您。\n${err}`);
       }
 
-      showStreams(data, limit);
+      if (typeof callbackForShow === 'function') {
+        callbackForShow(data, limit);
+      } else {
+        console.log('親愛的程式員，你沒有傳顯示到畫面的方法，所以只有撈到資料');
+      }
 
       document.querySelector('.loading').classList.add('d-none');
     } else {

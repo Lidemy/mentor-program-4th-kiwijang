@@ -2,10 +2,10 @@
 /* eslint-disable no-alert */
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('.box__btn').addEventListener('click', () => {
-    getData();
+    getData(changePageInfo);
   });
 
-  function getData() {
+  function getData(callbackForShow) {
     const xhr = new XMLHttpRequest();
     xhr.onload = () => {
       if (xhr.status >= 200 && xhr.status < 400) {
@@ -20,7 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        changePageInfo(data.prize);
+        if (typeof callbackForShow === 'function') {
+          callbackForShow(data.prize);
+        } else {
+          console.log('親愛的程式員，你沒有傳顯示到畫面的方法，所以只有撈到資料');
+        }
       } else {
         window.alert('系統不穩定，請再試一次');
       }
@@ -35,29 +39,29 @@ document.addEventListener('DOMContentLoaded', () => {
   function changePageInfo(prizeType) {
     document.querySelector('.box').classList.add('d-none');
     document.querySelector('.prizebox').classList.remove('d-none');
-    document.querySelector('.section-main').classList.remove('first-priz');
-    document.querySelector('.section-main').classList.remove('second-priz');
-    document.querySelector('.section-main').classList.remove('third-priz');
-    document.querySelector('.section-main').classList.remove('none-priz');
-    switch (prizeType) {
-      case 'FIRST':
-        document.querySelector('.prizebox > h2').innerText = '恭喜你中頭獎了！日本東京來回雙人遊！';
-        document.querySelector('.section-main').classList.add('first-priz');
-        break;
-      case 'SECOND':
-        document.querySelector('.prizebox > h2').innerText = '二獎！90 吋電視一台！';
-        document.querySelector('.section-main').classList.add('second-priz');
-        break;
-      case 'THIRD':
-        document.querySelector('.prizebox > h2').innerText = '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！';
-        document.querySelector('.section-main').classList.add('third-priz');
-        break;
-      case 'NONE':
-        document.querySelector('.prizebox > h2').innerText = '銘謝惠顧';
-        document.querySelector('.section-main').classList.add('none-priz');
-        break;
-      default:
-        break;
-    }
+    document.querySelector('#section-main').className = '';
+
+    const prizes = {
+      FIRST: {
+        className: 'first-priz',
+        title: '恭喜你中頭獎了！日本東京來回雙人遊！',
+      },
+      SECOND: {
+        className: 'second-priz',
+        title: '二獎！90 吋電視一台！',
+      },
+      THIRD: {
+        className: 'third-priz',
+        title: '恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！',
+      },
+      NONE: {
+        className: 'none-priz',
+        title: '銘謝惠顧',
+      },
+    };
+
+    const { className, title } = prizes[prizeType];
+    document.querySelector('.prizebox > h2').innerText = title;
+    document.querySelector('#section-main').classList.add(className);
   }
 });

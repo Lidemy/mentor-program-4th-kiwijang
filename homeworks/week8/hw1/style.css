@@ -81,7 +81,7 @@ section {
   padding: 40px 0;
 }
 
-.section-main {
+#section-main {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,19 +90,19 @@ section {
   background-repeat: no-repeat;
   background-size: cover;
 }
-.section-main.first-priz {
+#section-main.first-priz {
   color: black;
   background-image: url("./img/flight.jpg");
 }
-.section-main.second-priz {
+#section-main.second-priz {
   color: black;
   background-image: url("./img/tv.jpg");
 }
-.section-main.third-priz {
+#section-main.third-priz {
   color: black;
   background-image: url("./img/yt.jpg");
 }
-.section-main.none-priz {
+#section-main.none-priz {
   color: white;
   background-image: none;
   background-color: black;
@@ -224,7 +224,7 @@ footer {
   section {
     padding: 0;
   }
-  .section-main {
+  #section-main {
     padding: 80px;
   }
   header {
