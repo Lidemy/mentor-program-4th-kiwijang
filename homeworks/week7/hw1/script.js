@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isInputPass(emailEle);
         break;
       case 'tel':
-        isInputPass(nicknameEle);
+        isInputPass(telEle);
         break;
       case 'typegroup': {
         const allEles = typegroupEle.querySelectorAll('input');
