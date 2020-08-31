@@ -22,7 +22,7 @@ function getTopGames() {
 
 // 印出目前觀看人數跟遊戲名稱
 getTopGames().on('response', (res) => {
-  if (res.statusCode >= 200 && res.statusCode < 300) {
+  if (!(res.statusCode >= 200 && res.statusCode < 300)) {
     if (res.statusCode === 404) {
       console.log('404 找不到資料');
       return;
