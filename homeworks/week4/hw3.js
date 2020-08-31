@@ -23,7 +23,7 @@ searchCountry(inputName).on('response', (res) => {
     console.log('請輸入國家名稱');
     return;
   }
-  if (res.statusCode >= 200 && res.statusCode < 300) {
+  if (!(res.statusCode >= 200 && res.statusCode < 300)) {
     if (res.statusCode === 404) {
       console.log('404 找不到資料');
       return;
