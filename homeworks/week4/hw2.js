@@ -132,7 +132,7 @@ function listBooks() {
 // node hw2.js read 1 輸出 id 為 1 的書籍
 function readBook(id) {
   getBookById(id).on('response', (res) => {
-    if (res.statusCode >= 200 && res.statusCode < 300) {
+    if (!(res.statusCode >= 200 && res.statusCode < 300)) {
       if (res.statusCode === 404) {
         console.log('404 找不到資料');
         return;
@@ -154,7 +154,7 @@ function readBook(id) {
 function deleteBook(id) {
   deleteBookById(id).on('response', (res) => {
     console.log(res.statusCode);
-    if (res.statusCode >= 200 && res.statusCode < 300) {
+    if (!(res.statusCode >= 200 && res.statusCode < 300)) {
       if (res.statusCode === 404) {
         console.log('404 找不到資料');
         return;
@@ -171,7 +171,7 @@ function deleteBook(id) {
 function newBook(bookName) {
   createBook(bookName).on('response', (res) => {
     console.log(res.statusCode);
-    if (res.statusCode >= 200 && res.statusCode < 300) {
+    if (!(res.statusCode >= 200 && res.statusCode < 300)) {
       if (res.statusCode === 404) {
         console.log('404 找不到資料');
         return;
@@ -188,7 +188,7 @@ function newBook(bookName) {
 function updateBook(id, bookName) {
   updBook(id, bookName).on('response', (res) => {
     console.log(res.statusCode);
-    if (res.statusCode >= 200 && res.statusCode < 300) {
+    if (!(res.statusCode >= 200 && res.statusCode < 300)) {
       if (res.statusCode === 404) {
         console.log('404 找不到資料');
         return;
