@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!(isPass(nicknameEle, 'nickname')
       && isPass(emailEle, 'email')
       && isPass(telEle, 'tel')
-      && groupisPass(typegroupEle, 'typegroup')
+      && groupIsPass(typegroupEle, 'typegroup')
       && isPass(knownEle, 'known'))) {
       window.alert('資料有誤，請修正');
     } else {
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return true;
   }
 
-  function groupisPass(ele, idString) {
+  function groupIsPass(ele, idString) {
     typegroupEleErrorClassList.remove('bd-red');
     if (!ele) {
       return false;
