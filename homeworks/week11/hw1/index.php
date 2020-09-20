@@ -18,7 +18,7 @@
   $add_own_comment = NULL;
 
   // 如果已經有登入才給值
-  if (!empty($_SESSION['features']) || !empty($_SESSION['username'])) {
+  if (!empty($_SESSION['features']) && !empty($_SESSION['username'])) {
     $username = $_SESSION['username'];
     $user_row = getUserFromUsername($username); 
     
@@ -29,6 +29,9 @@
     $modify_other_comment = isFeaturesHasFeatureid(5, $features);
     $delete_other_comment = isFeaturesHasFeatureid(4, $features);
     $add_own_comment = isFeaturesHasFeatureid(1, $features);
+  } else {
+    session_start();
+    session_destroy();
   }
 
   $page = 1;
