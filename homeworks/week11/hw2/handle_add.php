@@ -1,0 +1,36 @@
+<?php
+session_set_cookie_params(0, "/mtr04group1/naomi/hw2/");
+session_start();
+require_once "conn.php";
+require_once "utils.php";
+
+if (empty($_POST['content']) || empty($_POST['title'])) {
+    header('Location: edit.php?errCode=1&id=' . $article_id);
+    die('請輸入 content 和 title');
+}
+if (empty($_SESSION['account_name'])) {
+    header('Location: index.php?errCode=1');
+    die('沒有 account_name 請先登入');
+}
+
+addComment();
+header("Location: index.php?update=yap");
+
+function addComment()
+{
+    global $conn;
+    $content = $_POST['content'];
+    $title = $_POST['title'];
+    $sql = sprintf(
+        "insert into naomi_articles(content, title, account_id) values(?,?,1)",
+        $content,
+        $title
+    );
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param('ss', $content, $title);
+    $result = $stmt->execute();
+    if (!$result) {
+        die($conn->error);
+    }
+}
+?>
