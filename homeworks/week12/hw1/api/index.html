@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>week12 留言板</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <style>
+      .card {
+        margin: 12px;
+      }
+      .load-more {
+        margin: 12px 0;
+      }
+    </style>
+    <script>
+      const siteKey = 'aaa';
+      const loaadMoreButtonHTML = '<button class="btn btn-primary load-more">載入更多</button>'
+      let lastId = null;
+      let isEnd = false;
+
+      function escapeHtml(toOutput){
+        return toOutput.replace(/\&/g, '&amp;')
+            .replace(/\</g, '&lt;')
+            .replace(/\>/g, '&gt;')
+            .replace(/\"/g, '&quot;')
+            .replace(/\'/g, '&#x27')
+            .replace(/\%/g, '(percent)')
+            .replace(/\//g, '&#x2F');
+      }
+
+      function addCommentToDOM(container, comment, isPrepend) {
+        const html = `
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">${escapeHtml(comment.nickname)}</h5>
+                    <p class="card-text">
+                     ${escapeHtml(comment.content)}
+                    </p>
+                  </div>
+                </div>
+              `;
+        if (isPrepend) {
+          container.prepend(html);
+        } else {
+          container.append(html);
+        }
+      }
+
+      function getCommentsAPI(siteKey, before, cb) {
+        let url = `http://localhost/API/api_comments.php?site_key=${siteKey}`;
+        if (before) {
+          url += '&before=' + before
+        }
+        $.ajax({
+          url,
+        }).done(function(data) {
+            cb(data)
+          });
+      }
+
+      $(document).ready(() => {
+          getComments();
+
+          $('.comments').on('click', '.load-more', () => {
+            getComments();
+          });
+
+          //https://stackoverflow.com/questions/21837155/preventdefault-not-work-in-submit-button
+          // Instead of listening for the button click you need to listen for <form> submit:
+          $('form').on('submit', function(e) {
+            const newComment = {
+                'site_key': 'aaa',
+                'nickname': $('#nickname').val(),
+                'content': $('#content-textarea').val()
+              };
+            e.preventDefault();
+            $.ajax({
+              type: 'POST',
+              url: 'http://localhost/API/api_add_comments.php',
+              data: newComment
+            }).done(function(data) {
+              if (!data.ok) {
+                alert(data.message);
+                return;
+              }
+              alert('新增成功!');
+              $('#nickname').val('');
+              $('#content-textarea').val('');
+
+              
+              const commentDOM = $('.comments');
+              addCommentToDOM(commentDOM, newComment, true);
+            });
+          });
+        }
+      );
+
+      function getComments() {
+        $('.load-more').hide();
+
+        if (isEnd) {
+          return;
+        }
+
+        getCommentsAPI(siteKey, lastId, data => {
+            if (!data.ok) {
+              alert(data.message);
+              return;
+            }
+
+            const comments = data.discussions;
+            const commentDOM = $('.comments');
+
+            for (let comment of comments) {
+              addCommentToDOM(commentDOM, comment, false);
+            }
+            let length = comments.length;
+            if (length < 5 || length === 0) {
+              isEnd = true;
+              $('.load-more').hide();
+            } else {
+              lastId = comments[length -1].id;
+              $('.comments').append(loaadMoreButtonHTML);
+            }
+
+          });
+      }
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div class="form-group">
+          <label for="nickname">暱稱</label>
+          <input type="text" class="form-control" id="nickname" />
+        </div>
+
+        <div class="form-group">
+          <label for="content-textarea">留言內容</label>
+          <textarea
+            class="form-control"
+            id="content-textarea"
+            rows="3"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          id="add-btn"
+          class="btn btn-primary add-comment-form"
+        >
+          送出
+        </button>
+      </form>
+
+      <div class="comments">
+      </div>
+
+    </div>
+  </body>
+</html>
