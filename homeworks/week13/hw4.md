@@ -278,10 +278,13 @@ RxJS 萬宗歸一，同步、非同步、事件都幫你包成一個 Observable 
 
 - P1 你知道如何使用 Promise  
   [Promise](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+
   > `new Promise( /* executor */ function(resolve, reject) { ... } );`
   > Promise 物件代表一個即將完成、或失敗的非同步操作，以及它所產生的值。
   > try catch 怎麼包，之後如用到要再研究一下... 👀
-- [callback, promise, async/await 使用方式教學以及介紹 Part II (Error Handling 介紹)](https://yu-jack.github.io/2019/05/02/promise-2/)
+
+  - [callback, promise, async/await 使用方式教學以及介紹 Part II (Error Handling 介紹)](https://yu-jack.github.io/2019/05/02/promise-2/)
+  - [Week13 自我檢討](https://github.com/Lidemy/mentor-program-4th-kiwijang/tree/master/examples/week13)
 
 - P2 你知道如何使用 fetch
   fetch 回來的東西是 promise 物件!
